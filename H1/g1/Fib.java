@@ -1,4 +1,5 @@
 import java.util.*;
+import java.math.BigInteger;
 
 public class Fib{
 
@@ -9,6 +10,23 @@ public class Fib{
   // Fibonacci numbers iteratively
   int fib_itr(int n){
 
+    // Creats needed variables as BigIntegers
+    int i = 0;
+    BigInteger F_1 = new BigInteger("0");
+    BigInteger F_2 = new BigInteger("1");
+    BigInteger new1 = new BigInteger("0");
+    while(i < n){
+      if(i == 0){ // If first Fibonacci operation, use f(0) and f(1) as 0 and 1
+        new1 = F_1.add(F_2);
+      }else{
+        BigInteger tempF_1 = new1;
+        new1 = new1.add(F_1);
+        F_1 = tempF_1;
+      }
+      i++;
+    }
+
+    System.out.println("The Fibonacci number at i = " + i + " is " + new1);
     System.out.println("Iteratively Fibonacci works");
     
     return 0;
@@ -53,7 +71,7 @@ public class Fib{
 
   // Main function to call different versions for Fibonacci number calculation
   public static void main(String[] args){
-    System.out.println("This is a cool funciton, lets get this started");
+    System.out.print("Please enter the n-Ith Fibonacci number you would like:");
 
     Fib tempfib = new Fib();
 
