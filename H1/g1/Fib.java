@@ -4,7 +4,9 @@ import java.math.BigInteger;
 public class Fib{
 
   // Constructor
-  public Fib(/*int f0, int f1*/){
+  public Fib(BigInteger f0,BigInteger f1){
+    this.f0 = f0;
+    this.f1 = f1;
   }
 
   // Fibonacci numbers iteratively
@@ -12,47 +14,47 @@ public class Fib{
 
     // Creates needed variables as BigIntegers
     int i = 0;
-    BigInteger F_1 = new BigInteger("0");
-    BigInteger F_2 = new BigInteger("1");
-    BigInteger new1 = new BigInteger("0");
+    BigInteger F_0 = f0;
+    BigInteger F_1 = f1;
+    BigInteger Ithfib = new BigInteger("0");
     while(i < n){
       if(i == 0){ // If first Fibonacci operation, use f(0) and f(1) as 0 and 1
-        new1 = F_1.add(F_2);
+        Ithfib = F_0.add(F_1);
       }else{
-        BigInteger tempF_1 = new1;
-        new1 = new1.add(F_1);
-        F_1 = tempF_1;
+        BigInteger tempF_0 = Ithfib;
+        Ithfib = Ithfib.add(F_0);
+        F_0 = tempF_0;
       }
       i++;
     }
 
-    System.out.println("The Fibonacci number at i = " + i + " is " + new1);
+    System.out.println("The Fibonacci number at i = " + i + " is " + Ithfib);
     System.out.println("Iteratively Fibonacci works");
     
     return 0;
   }
 
   // Fibonacci numbers recursively
-  int fib_recur(int n){
+  BigInteger fib_recur(int n){
     // Sets F(1) and F(2) equal to -1(null)
-    int F_1 = -1;
-    int F_2 = -1;
+    BigInteger F_1 = BigInteger.valueOf(-1);
+    BigInteger F_2 = BigInteger.valueOf(-1);
 
     // Base case
-    if( n == 0){
-      return 0;
+    if(n == 0){
+      return this.f0;
     }else if(n == 1){ // Base case
-      return 1;
-    }else{  // Retermine F_1 and F_2 by recursively checking each possiblitity
-      if(F_1 == -1){
+      return this.f1;
+    }else{  // Determine F_1 and F_2 by recursively checking each possiblitity
+      if(F_1.equals(BigInteger.valueOf(-1))){
         F_1 = fib_recur(n-1);
       }
-      if(F_2 == -1){
+      if(F_2.equals(BigInteger.valueOf(-1))){
         F_2 = fib_recur(n-2);
       }
     }
-    System.out.println("The Fibonacci number at i = " + n + " is " + (F_1 + F_2));
-    return (F_1 + F_2); // Return computed sum back to called function
+    System.out.println("The Fibonacci number at i = " + n + " is " + (F_1.add(F_2)));
+    return (F_1.add(F_2)); // Return computed sum back to called function
   }
   // To make this faster, could implment Dynamic programming to remember already calculated results.
 
@@ -95,7 +97,7 @@ public class Fib{
   public static void main(String[] args){
     System.out.print("Please enter the n-Ith Fibonacci number you would like:");
 
-    Fib tempfib = new Fib();
+    Fib tempfib = new Fib(BigInteger.valueOf(0),BigInteger.valueOf(1));
 
     int input = tempfib.userInput();
 
@@ -105,4 +107,7 @@ public class Fib{
     System.out.println("End of main function");
     return;
   }
+
+  BigInteger f0;
+  BigInteger f1;
 };
