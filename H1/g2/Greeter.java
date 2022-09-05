@@ -1,45 +1,54 @@
 //package H1.g2;
 
 public class Greeter {
-    public Greeter(String Name){    // Sets name of greeter
-        name = Name;
-    }
+  public Greeter(String Name){    // Sets name of greeter
+      name = Name;
+  }
 
-    // Prints hello and then name
-    public String sayHello(){
-        return "Hello, " + name + "!";
-    }
+  // Prints hello and then name
+  public String sayHello(){
+    return "Hello, " + name + "!";
+  }
 
-    // Swaps a Greeter object's name with its own
-    public void swapNames(Greeter other){
+  // Swaps a Greeter object's name with its own
+  public void swapNames(Greeter other){
 
-            String tempname = other.name;
-            other.name = this.name;
-            this.name = tempname;
-    }
+    String tempname = other.name;
+    other.name = this.name;
+    this.name = tempname;
+  }
 
-    // Creates a new Greeter and returns it with its name and the current Greeters name Concatonated
-    public Greeter createQualifiedGreeter(String qualifier){
-        return new Greeter(qualifier + " " + this.name);
-    }
+  // Creates a new Greeter and returns it with its name and the current Greeters name Concatonated
+  public Greeter createQualifiedGreeter(String qualifier){
+    return new Greeter(qualifier + " " + this.name);
+  }
 
-    public static void main(String[] args){
+  public static void main(String[] args){
+    new GreeterTester(); 
+  }
 
-        Greeter g = new Greeter("Eyan");
-        Greeter g1 = new Greeter("Taniya");
+  public String name;
+};
 
-        System.out.println("g is " + g.name);
-        System.out.println("g1 is " + g1.name);
+// This class just test the Greeter class
+class GreeterTester{
 
-        g.swapNames(g1);
+  public GreeterTester(){
 
-        System.out.println("g is " + g.name);
-        System.out.println("g1 is " + g1.name);
+    Greeter g = new Greeter("Eyan");
+    Greeter g1 = new Greeter("Taniya");
 
-        Greeter g2 = g.createQualifiedGreeter("Cool");
+    System.out.println("g is " + g.name);
+    System.out.println("g1 is " + g1.name);
 
-        System.out.println("g2 is " + g2.name);
-    }
+    g.swapNames(g1);
 
-    private String name;
+    System.out.println("g is " + g.name);
+    System.out.println("g1 is " + g1.name);
+
+    Greeter g2 = g.createQualifiedGreeter("Cool");
+
+    System.out.println("g2 is " + g2.name);
+  }
+
 };
