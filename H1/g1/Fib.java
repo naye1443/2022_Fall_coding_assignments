@@ -1,3 +1,8 @@
+/* This is my Fibonacci sequence implmentation. I added the BigInteger Objects so that if wanted, the user could calculate higher numbers rather than 2^32 bits.
+ * I also used a user input method, this would help with containing error checking
+ */
+
+
 import java.util.*;
 import java.math.BigInteger;
 
@@ -53,15 +58,14 @@ public class Fib{
         F_2 = fib_recur(n-2);
       }
     }
-    System.out.println("The Fibonacci number at i = " + n + " is " + (F_1.add(F_2)));
     return (F_1.add(F_2)); // Return computed sum back to called function
   }
   // To make this faster, could implment Dynamic programming to remember already calculated results.
 
   // Takes user input
-  public int userInput(){
+  public BigInteger userInput(){
     // Initalizes variables and control variables
-    int strn = 0;
+    BigInteger strn = BigInteger.valueOf(0);
     boolean correcVal = true;
 
     while(correcVal){
@@ -70,13 +74,13 @@ public class Fib{
       String n = in.nextLine();
       // Try to test if the string lined is an integer by trying to turn string into an int
       try{
-        strn = Integer.parseInt(n);
+        strn = BigInteger.valueOf(Integer.parseInt(n));
       } catch (Exception e){
         System.out.println("This value is not a integer");
         continue;
       }
       // If The converted string to int is a number, make sure the value is greater than 0
-      if (strn < 0){
+      if (strn.compareTo(BigInteger.ZERO) < 0){
         try{
           throw new ArithmeticException("This number is not greater than 0.");
         } catch (ArithmeticException e ){
@@ -89,20 +93,40 @@ public class Fib{
       correcVal = false;
     }
     return strn;
-
   }
 
 
   // Main function to call different versions for Fibonacci number calculation
   public static void main(String[] args){
-    System.out.print("Please enter the n-Ith Fibonacci number you would like:");
+    //System.out.print("Please enter the n-Ith Fibonacci number you would like:");
 
-    Fib tempfib = new Fib(BigInteger.valueOf(0),BigInteger.valueOf(1));
+    int[] intargs;
+    intargs = new int[3];
 
-    int input = tempfib.userInput();
+    if (args.length < 3){
+      System.out.println("You entered too few arguments. Please enter three arguments f(0) f(1) and n");
+      System.exit(1);
+    }
+    try {
+      for(int i = 0; i < args.length ;i++){
+        intargs[i] = Integer.parseInt(args[i]);
+      }
+    }catch(NumberFormatException e){
+      System.out.println("This is not a number!");
+      System.exit(1);
+    }catch(ArrayIndexOutOfBoundsException e){
+      System.out.println("You have entered too many inputs");
+      System.exit(1);
+    }
+    
+    System.out.println("You have printed " + intargs[2]);
 
-    tempfib.fib_itr(input);
-    tempfib.fib_recur(input);
+    Fib tempfib = new Fib(BigInteger.valueOf(intargs[0]),BigInteger.valueOf(intargs[1]));
+
+    // BigInteger input = tempfib.userInput();
+
+    tempfib.fib_itr(intargs[2]);
+    tempfib.fib_recur(intargs[2]);
 
     System.out.println("End of main function");
     return;
