@@ -236,6 +236,11 @@ try {
 	x++;
 }
 
+The code sets x = to 0. g1 and g2 are then initalized to name Alice. The if statment then says if the sayHello
+Funciton are not equal to each other, then set g2 to null. When trying to print g2.sayHello, the NullPointerException
+would have been called and x would have been set to 10. And then finally would have incremented x by 1 so x would be 11.
+However, Because both g1 and g2 sayHello output is the same, x would just be set to 2 and then incremented by 1 in finally block
+. Thus the final value of x is 3.
 
 
 5. 

@@ -2,7 +2,6 @@
  * I also used a user input method, this would help with containing error checking
  */
 
-
 import java.util.*;
 import java.math.BigInteger;
 
@@ -95,41 +94,40 @@ public class Fib{
     return strn;
   }
 
-
   // Main function to call different versions for Fibonacci number calculation
   public static void main(String[] args){
-    //System.out.print("Please enter the n-Ith Fibonacci number you would like:");
+  //System.out.print("Please enter the n-Ith Fibonacci number you would like:");
 
-    int[] intargs;
-    intargs = new int[3];
+  int[] intargs;
+  intargs = new int[3];
 
-    if (args.length < 3){
-      System.out.println("You entered too few arguments. Please enter three arguments f(0) f(1) and n");
-      System.exit(1);
+  if (args.length < 3){
+    System.out.println("You entered too few arguments. Please enter three arguments f(0) f(1) and n");
+    System.exit(1);
+  }
+  try {
+    for(int i = 0; i < args.length ;i++){
+      intargs[i] = Integer.parseInt(args[i]);
     }
-    try {
-      for(int i = 0; i < args.length ;i++){
-        intargs[i] = Integer.parseInt(args[i]);
-      }
-    }catch(NumberFormatException e){
-      System.out.println("This is not a number!");
-      System.exit(1);
-    }catch(ArrayIndexOutOfBoundsException e){
-      System.out.println("You have entered too many inputs");
-      System.exit(1);
-    }
-    
-    System.out.println("You have printed " + intargs[2]);
+  }catch(NumberFormatException e){
+    System.out.println("This is not a number!");
+    System.exit(1);
+  }catch(ArrayIndexOutOfBoundsException e){
+    System.out.println("You have entered too many inputs");
+    System.exit(1);
+  }
+  
+  System.out.println("You have printed " + intargs[2]);
 
-    Fib tempfib = new Fib(BigInteger.valueOf(intargs[0]),BigInteger.valueOf(intargs[1]));
+  Fib tempfib = new Fib(BigInteger.valueOf(intargs[0]),BigInteger.valueOf(intargs[1]));
 
-    // BigInteger input = tempfib.userInput();
+  // BigInteger input = tempfib.userInput();
 
-    tempfib.fib_itr(intargs[2]);
-    tempfib.fib_recur(intargs[2]);
+  tempfib.fib_itr(intargs[2]);
+  tempfib.fib_recur(intargs[2]);
 
-    System.out.println("End of main function");
-    return;
+  System.out.println("End of main function");
+  return;
   }
 
   BigInteger f0;
