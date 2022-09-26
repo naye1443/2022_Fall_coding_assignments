@@ -1,2 +1,6 @@
 #Ignores Java Class files
 .class
+#ignores intellj files
+.iml
+#ignores diagram directory
+diagrams/**
