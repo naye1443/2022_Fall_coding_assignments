@@ -1,11 +1,12 @@
-
+package src;
 
 public class Nvector {
 
   /**
    * @param n, the capacity of the vector
-   * @precondition: None
-   * @postcondition: The vector will be initalized with a capacity of n with 0's at each index, Nvector > 0
+   * @precondition None
+   * @postcondition The vector will be initalized with a capacity of n with 0's at each index, Nvector > 0
+   * @invariant Nvector will always be > 0
    */
   public Nvector(int n) {
     vector = new double[n];
@@ -16,6 +17,7 @@ public class Nvector {
    * @param n, this parameter is an arbitrary number of parameters. These parameters are then converted into a Nvector
    * @precondition None
    * @postcondition Nvector created with parameters passed to the constructor
+   * @invariant
    */
   public Nvector(double... n) {
     vector = new double[n.length];
@@ -183,8 +185,6 @@ public class Nvector {
 
     System.out.println("end of sprod testing");
     System.out.println(test4.toString());
-
-
     return;
   }
 
