@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import javax.swing.*;
 
 public class Frame{
@@ -45,8 +44,10 @@ public class Frame{
 
     /**
      * This function takes the index of an array. The button with the related actionlistener is returned
-     * @param i
-     * @return
+     * @precondition , a MyRect and Jlabel must be instandtiated.
+     * @postfondition , a JButton with a ActionListener attached must be returned.
+     * @param i , i determines which color is being set to actionlistener
+     * @return , returns a JButton object to be stored in button array
      */
     public JButton createButton(int i, Rectangle MyRect, JLabel label){
         String colorname = "";
@@ -61,11 +62,20 @@ public class Frame{
             colorname = "Yellow";
         }
         JButton newButton = new JButton(colorname);
+        // attach Action listener to newly created button
         newButton.addActionListener(createchangeColorListener(colorchoice, MyRect, label));
         return newButton;
     }
 
-    // helper method for adding button listeners
+    /**
+     * @precondition , The color needs to be 1 of the 3 possible colors in the Colors array, MyRect needs to be defined
+     * and JLabel must already be initalized and painted.
+     * @postcondition , a ActionListener that repaints the Rect with the desired Color is returned.
+     * @param C the color that the colorlistener will set to the Rectangle.
+     * @param MyRect , the rectangle that is to changeColor.
+     * @param label , the label that will be repainted.
+     * @return , returns a new ActionListner object with the actionPreformed attached.
+     */
     public static ActionListener createchangeColorListener(Color C, Rectangle MyRect, JLabel label){
         return new ActionListener()
         {
